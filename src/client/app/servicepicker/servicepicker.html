@@ -1,11 +1,11 @@
 <header class="clearfix">
     <div class="left">
-        <h3>Select a service</h3>
+        <h3 translate="SELECT_SERVICE"></h3>
     </div>
     <div class="right service-ordering">
-        <span>Order by:</span>
-        <button ng-click="vm.order('price')" type="button" class="btn btn-link">Best price first</button>
-        <button ng-click="vm.order('transit')" type="button" class="btn btn-link">Shortest transit time first</button>
+        <span translate="ORDER_BY">:</span>
+        <button ng-click="vm.order('price')" type="button" class="btn btn-link" translate="BEST_PRICE_FIRST"></button>
+        <button ng-click="vm.order('transit')" type="button" class="btn btn-link" translate="SHORTEST_TRANSIT_TIME_FIRST"></button>
     </div>
 </header>
 <section class="clearfix service-entry mainbar" data-ng-repeat="service in vm.services">
@@ -24,7 +24,7 @@
         </div>
         <div class="duration col-md-2 col-lg-2">
             <h2>{{service.transit_hours}}h</h2>
-            <h6>estimated</h6>
+            <h6 translate="ESTIMATED"></h6>
         </div>
         <div class="pickup-schedule col-md-3 col-lg-3">
             <div class="calendar left">
@@ -38,9 +38,7 @@
         <div class="action-col col-md-2 col-lg-2">
             <span class="price glyphicon glyphicon-euro">{{service.price.total_price}}</span><span class="tax">+VAT</span>
             <div>
-                <button type="button" class="btn btn-warning">
-                    Select this
-                </button>
+                <button type="button" class="btn btn-warning" translate="SELECT_THIS"></button>
             </div>
         </div>
         <div class="row-fluid info-row clearfix">
@@ -52,7 +50,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6">
-                        <a href="{{service.details_url}}">Full details</span>
+                        <a href="{{service.details_url}}" translate="FULL_DETAILS"></a>
                     </div>
                 </div>
             </div>

@@ -11,20 +11,15 @@
 
         /*jshint validthis: true */
         var vm = this;
-        vm.news = {
-            title: 'Marvel Avengers',
-            description: 'Marvel Avengers 2 is now in production!'
-        };
-        vm.avengerCount = 0;
         vm.services = [];
         vm.title = 'Packlink Servicepicker';
         vm.order = order;
 
         activate();
-
+        
         function activate() {
             return getServices().then(function() {
-                logger.info('Hiiiiiiiiiiiiiii');
+                logger.info('Services initiated');
             });
         }
 

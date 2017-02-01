@@ -133,18 +133,6 @@ gulp.task('vendorcss', function() {
 });
 
 /**
- * Copy fonts
- * @return {Stream}
- */
-gulp.task('fonts', function() {
-    var dest = paths.build + 'fonts';
-    log('Copying fonts');
-    return gulp
-        .src(paths.fonts)
-        .pipe(gulp.dest(dest));
-});
-
-/**
  * Compress images
  * @return {Stream}
  */
@@ -171,7 +159,7 @@ gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function() {
     var index = paths.client + 'index.html';
     var minFilter = plug.filter(['**/*.min.*', '!**/*.map']);
     var indexFilter = plug.filter(['index.html']);
-
+    console.log(minFilter);
     var stream = gulp
         // Write the revisioned files
         .src([].concat(minified, index)) // add all built min files and index.html
@@ -212,7 +200,7 @@ gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function() {
  * Build the optimized app
  * @return {Stream}
  */
-gulp.task('build', ['rev-and-inject', 'images', 'fonts'], function() {
+gulp.task('build', ['rev-and-inject', 'images'], function() {
     log('Building the optimized app');
 
     return gulp.src('').pipe(plug.notify({
@@ -264,26 +252,6 @@ gulp.task('watch', function() {
     function logWatch(event) {
         log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
     }
-});
-
-/**
- * Run specs once and exit
- * To start servers and run midway specs as well:
- *    gulp test --startServers
- * @return {Stream}
- */
-gulp.task('test', function(done) {
-    startTests(true /*singleRun*/ , done);
-});
-
-/**
- * Run specs and wait.
- * Watch for file changes and re-run tests on each change
- * To start servers and run midway specs as well:
- *    gulp autotest --startServers
- */
-gulp.task('autotest', function(done) {
-    startTests(false /*singleRun*/ , done);
 });
 
 /**
@@ -445,51 +413,6 @@ function startPlatoVisualizer() {
     function platoCompleted(report) {
         var overview = plato.getOverviewReport(report);
         log(overview.summary);
-    }
-}
-
-/**
- * Start the tests using karma.
- * @param  {boolean} singleRun - True means run once and end (CI), or keep running (dev)
- * @param  {Function} done - Callback to fire when karma is done
- * @return {undefined}
- */
-function startTests(singleRun, done) {
-    var child;
-    var excludeFiles = ['./src/client/app/**/*spaghetti.js'];
-    var fork = require('child_process').fork;
-
-    if (env.startServers) {
-        log('Starting servers');
-        var savedEnv = process.env;
-        savedEnv.NODE_ENV = 'dev';
-        savedEnv.PORT = 8888;
-        child = fork('src/server/app.js', childProcessCompleted);
-    } else {
-        excludeFiles.push('./src/client/test/midway/**/*.spec.js');
-    }
-
-    karma.start({
-        configFile: __dirname + '/karma.conf.js',
-        exclude: excludeFiles,
-        singleRun: !!singleRun
-    }, karmaCompleted);
-
-    ////////////////
-
-    function childProcessCompleted(error, stdout, stderr) {
-        log('stdout: ' + stdout);
-        log('stderr: ' + stderr);
-        if (error !== null) {
-            log('exec error: ' + error);
-        }
-    }
-
-    function karmaCompleted() {
-        if (child) {
-            child.kill();
-        }
-        done();
     }
 }
 

@@ -1,29 +1,28 @@
 {
-	"name": "packlink-demo",
-	"version": "0.0.1",
-	"description": "Packlink Demo",
-	"authors": [
-		"Dhruva Krishnan"
-	],
-	"homepage": "https://github.com/dkris/packlink",
-	"ignore": [
-		"**/.*",
-		"node_modules",
-		"bower_components",
-		"test",
-		"tests"
-	],
-	"name": "fountain-inject",
-	"version": "0.0.1",
-	"dependencies": {
-		"angular": "^1.5.0",
-		"bootstrap": "^3.3.7",
-		"jquery": "~3.1.1",
-		"angular-route": "~1.6.1",
-		"angular-animate": "~1.6.1",
-		"angular-sanitize": "~1.6.1"
-	},
-	"devDependencies": {
-		"angular-mocks": "^1.5.0"
-	}
+  "name": "fountain-inject",
+  "version": "0.0.1",
+  "description": "Packlink Demo",
+  "authors": [
+    "Dhruva Krishnan"
+  ],
+  "homepage": "https://github.com/dkris/packlink",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "bootstrap": "^3.3.7",
+    "jquery": "~3.1.1",
+    "angular-route": "~1.6.1",
+    "angular-animate": "~1.6.1",
+    "angular-sanitize": "~1.6.1"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.5.0",
+    "angular-translate": "^2.13.1"
+  }
 }
