@@ -159,7 +159,6 @@ gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function() {
     var index = paths.client + 'index.html';
     var minFilter = plug.filter(['**/*.min.*', '!**/*.map']);
     var indexFilter = plug.filter(['index.html']);
-    console.log(minFilter);
     var stream = gulp
         // Write the revisioned files
         .src([].concat(minified, index)) // add all built min files and index.html
@@ -170,18 +169,18 @@ gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function() {
 
     // inject the files into index.html
     .pipe(indexFilter) // filter to index.html
-    .pipe(inject('content/vendor.min.css', 'inject-vendor'))
+        .pipe(inject('content/vendor.min.css', 'inject-vendor'))
         .pipe(inject('content/all.min.css'))
         .pipe(inject('vendor.min.js', 'inject-vendor'))
         .pipe(inject('all.min.js'))
         .pipe(gulp.dest(paths.build)) // write the rev files
-    .pipe(indexFilter.restore()) // remove filter, back to original stream
+        .pipe(indexFilter.restore()) // remove filter, back to original stream
 
     // replace the files referenced in index.html with the rev'd files
     .pipe(plug.revReplace()) // Substitute in new filenames
-    .pipe(gulp.dest(paths.build)) // write the index.html file changes
-    .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
-    .pipe(gulp.dest(paths.build)); // write the manifest
+        .pipe(gulp.dest(paths.build)) // write the index.html file changes
+        .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
+        .pipe(gulp.dest(paths.build)); // write the manifest
 
     function inject(path, name) {
         var pathGlob = paths.build + path;
@@ -361,8 +360,10 @@ function serve(args) {
         //.on('change', tasks)
         .on('restart', function() {
             log('restarted!');
-            setTimeout(function () {
-                browserSync.reload({ stream: false });
+            setTimeout(function() {
+                browserSync.reload({
+                    stream: false
+                });
             }, 1000);
         });
 }
@@ -371,7 +372,7 @@ function serve(args) {
  * Start BrowserSync
  */
 function startBrowserSync() {
-    if(!env.browserSync || browserSync.active) {
+    if (!env.browserSync || browserSync.active) {
         return;
     }
 

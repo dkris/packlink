@@ -11,12 +11,7 @@
     // Must configure via the routehelperConfigProvider
     function routehelperConfig() {
         /* jshint validthis:true */
-        this.config = {
-            // These are the properties we need to set
-            // $routeProvider: undefined
-            // docTitle: ''
-            // resolveAlways: {ready: function(){ } }
-        };
+        this.config = {};
 
         this.$get = function() {
             return {
@@ -54,11 +49,6 @@
             $routeProvider.otherwise({redirectTo: '/'});
         }
 
-
-        function init() {
-            updateDocTitle();
-        }
-
         function getRoutes() {
             for (var prop in $route.routes) {
                 if ($route.routes.hasOwnProperty(prop)) {
@@ -70,17 +60,6 @@
                 }
             }
             return routes;
-        }
-
-        function updateDocTitle() {
-            $rootScope.$on('$routeChangeSuccess',
-                function(event, current, previous) {
-                    routeCounts.changes++;
-                    handlingRouteChangeError = false;
-                    var title = routehelperConfig.config.docTitle + ' ' + (current.title || '');
-                    $rootScope.title = title; // data bind to <title>
-                }
-            );
         }
     }
 })();
