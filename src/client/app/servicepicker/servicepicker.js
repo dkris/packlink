@@ -37,11 +37,11 @@
 
         function order(orderBy) {
             if (orderBy === 'transit') {
-                vm.services = $filter('orderBy')(vm.services, 'service.transit_hours', true);
-                console.log(vm.services);
+                vm.services = $filter('orderBy')(vm.services, function(service) {
+                    return parseInt(service.transit_hours, 10);
+                });
             } else {
                 vm.services = $filter('orderBy')(vm.services, 'service.price.total_price', true);
-                console.log(vm.services);
             }
         }
     }

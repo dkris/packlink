@@ -102,3 +102,12 @@
 .info-note {
     filter: opacity(50%);
 }
+/* Footer */
+.footer {
+    margin-top: 20px;
+}
+.pay-providers {
+    height: 20px;
+    margin: 5px;
+    filter: opacity(20%);
+}
