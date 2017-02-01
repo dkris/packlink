@@ -5,11 +5,14 @@
     <title>Packlink Services</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-
+    
+    <!-- inject-vendor:css -->
     <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- endinject -->
 
+    <!-- inject:css -->
     <link href="/src/client/content/styles.css" rel="stylesheet" />
-    <link href="/src/client/content/customtheme.css" rel="stylesheet" />
+    <!-- endinject -->
 </head>
 
 <body>
@@ -17,6 +20,7 @@
         <div data-ng-include="'app/layout/shell.html'"></div>
     </div>
 </body>
+    <!-- inject-vendor:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-translate/angular-translate.js"></script>
@@ -25,6 +29,9 @@
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="/bower_components/angular-translate/angular-translate.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:js -->
     <!-- Bootstrapping -->
     <script src="/src/client/app/app.module.js"></script>
     <!-- Reusable Blocks/Modules -->
@@ -48,4 +55,5 @@
     <script src="/src/client/app/servicepicker/servicepicker.module.js"></script>
     <script src="/src/client/app/servicepicker/config.route.js"></script>
     <script src="/src/client/app/servicepicker/servicepicker.js"></script>
+    <!-- endinject -->
 </html>
