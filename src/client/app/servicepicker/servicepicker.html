@@ -1,0 +1,61 @@
+<header class="clearfix">
+    <div class="left">
+        <h3>Select a service</h3>
+    </div>
+    <div class="right service-ordering">
+        <span>Order by:</span>
+        <button ng-click="vm.order('price')" type="button" class="btn btn-link">Best price first</button>
+        <button ng-click="vm.order('transit')" type="button" class="btn btn-link">Shortest transit time first</button>
+    </div>
+</header>
+<section class="clearfix service-entry mainbar" data-ng-repeat="service in vm.services">
+    <div class="row-fluid">
+        <div class="service-image col-md-2 col-lg-2">
+            <img alt="Service provider" class="service-provider-img" src="content/images/{{service.carrier | lowercase}}.png">
+        </div>
+        <div class="pickup-schedule col-md-3 col-lg-3">
+            <div class="calendar left">
+                <img src="content/images/calendar.png"></img>
+            </div>
+            <div class="schedule left">
+                <p>{{service.from.text}}</p>
+                <p>{{service.from.time}}</p>
+            </div>
+        </div>
+        <div class="duration col-md-2 col-lg-2">
+            <h2>{{service.transit_hours}}h</h2>
+            <h6>estimated</h6>
+        </div>
+        <div class="pickup-schedule col-md-3 col-lg-3">
+            <div class="calendar left">
+                <img src="content/images/calendar.png"></img>
+            </div>
+            <div class="schedule left">
+                <p>{{service.to.text}}</p>
+                <p>{{service.to.time}}</p>
+            </div>
+        </div>
+        <div class="action-col col-md-2 col-lg-2">
+            <span class="price glyphicon glyphicon-euro">{{service.price.total_price}}</span><span class="tax">+VAT</span>
+            <div>
+                <button type="button" class="btn btn-warning">
+                    Select this
+                </button>
+            </div>
+        </div>
+        <div class="row-fluid info-row clearfix">
+            <div class="info-items col-md-12 col-lg-12">
+                <div class="row-fluid">
+                    <div data-ng-repeat="info in service.service_info">
+                        <div class="info-text col-md-2 col-lg-2">
+                            <img src="content/images/note.png"></img><span>{{info.text}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <a href="{{service.details_url}}">Full details</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

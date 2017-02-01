@@ -1,41 +1,54 @@
 <!doctype html>
-<html>
-  <head>
+<html data-ng-app="app">
+
+<head>
     <meta charset="utf-8">
-    <title>FountainJS</title>
+    <title>Packlink Services</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <link rel="icon" type="image/png" href="http://fountainjs.io/assets/imgs/fountain.png" />
-  
     <!-- build:css({.tmp,src}) styles/vendor.css -->
     <!-- bower:css -->
-    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- endbower -->
     <!-- endbuild -->
-
     <!-- build:css({.tmp,src}) styles/app.css -->
-    <link rel="stylesheet" href="index.css"/>
+    <link href="/src/client/content/styles.css" rel="stylesheet" />
+    <link href="/src/client/content/customtheme.css" rel="stylesheet" />
     <!-- endbuild -->
-  </head>
+</head>
 
-
-  <body ng-app="app">
-    <app>Loading...</app>
-  </body>
-
-  <!-- build:js({.tmp,src}) scripts/vendor.js -->
-  <!-- bower:js -->
-  <!-- run `gulp inject` to automatically populate bower script dependencies -->
-  <!-- endbower -->
-  <!-- endbuild -->
-
-  <!-- build:js({.tmp,src}) scripts/app.js -->
-  <!-- inject:js -->
-  <!-- js files will be automatically insert here -->
-  <!-- endinject -->
-  <!-- inject:partials -->
-  <!-- angular templates will be automatically converted in js and inserted here -->
-  <!-- endinject -->
-  <!-- endbuild -->
+<body>
+    <div>
+        <div data-ng-include="'app/layout/shell.html'"></div>
+    </div>
+</body>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- Bootstrapping -->
+    <script src="/src/client/app/app.module.js"></script>
+    <!-- Reusable Blocks/Modules -->
+    <script src="/src/client/app/blocks/exception/exception.module.js"></script>
+    <script src="/src/client/app/blocks/exception/exception-handler.provider.js"></script>
+    <script src="/src/client/app/blocks/exception/exception.js"></script>
+    <script src="/src/client/app/blocks/logger/logger.module.js"></script>
+    <script src="/src/client/app/blocks/logger/logger.js"></script>
+    <script src="/src/client/app/blocks/router/router.module.js"></script>
+    <script src="/src/client/app/blocks/router/routehelper.js"></script>
+    <!-- core module -->
+    <script src="/src/client/app/core/core.module.js"></script>
+    <script src="/src/client/app/core/constants.js"></script>
+    <script src="/src/client/app/core/config.js"></script>
+    <script src="/src/client/app/core/dataservice.js"></script>
+    <!-- layout -->
+    <script src="/src/client/app/layout/layout.module.js"></script>
+    <script src="/src/client/app/layout/shell.js"></script>
+    <script src="/src/client/app/layout/footer.js"></script>
+    <!--service picker module-->
+    <script src="/src/client/app/servicepicker/servicepicker.module.js"></script>
+    <script src="/src/client/app/servicepicker/config.route.js"></script>
+    <script src="/src/client/app/servicepicker/servicepicker.js"></script>
 </html>
-

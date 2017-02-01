@@ -1,0 +1,104 @@
+/* Base classes */
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.clearfix {
+    clear: both;
+}
+.header {
+    
+}
+/* Topnav styles */
+.top-nav {
+    margin-left: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;  
+    color: #F7F9F9;  
+}
+.package {
+    margin-top: 15px;
+}
+.packlink-logo {
+    height: 35px;    
+}
+.package-icon {
+    height: 35px;
+    filter: opacity(20%);
+}
+.package-transit {
+    margin-left: 40px;
+    margin-top: 10px;
+}
+.arrow {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 10px;    
+    filter: opacity(40%);
+}
+/* service PICKER */
+.pickup-schedule {
+    margin-top: 30px;
+}
+
+.schedule {
+    margin-left: 5px;
+}
+
+.service-entry {
+    margin-top: 30px;
+    border-radius: 5px;
+    border: 1px solid #85C1E9;
+    height: 180px;
+}
+
+.calendar {
+    filter: opacity(20%);
+}
+
+.service-image {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.service-provider-img {
+    height: 140px;
+}
+
+.duration {
+    margin-top: 15px;
+}
+
+.price {
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.tax {
+    font-size: 10px;
+    font-weight: lighter;
+}
+.action-col {
+    margin-top: 30px;   
+}
+/* Info section */
+.info-row {
+    background-color: #85C1E9;
+    height: 30px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.info-items {
+    margin-top: 3px;
+}
+
+.info-text {
+    color: #1B4F72;
+}
+
+.info-note {
+    filter: opacity(50%);
+}
