@@ -9,7 +9,11 @@ var paths = require('./gulp.config.json');
 var plato = require('plato');
 var plug = require('gulp-load-plugins')();
 var reload = browserSync.reload;
+var filter = require('gulp-filter');
+var inject = require('gulp-inject');
+var debug = require('gulp-debug');
 
+var glob = require('glob');
 var colors = plug.util.colors;
 var env = plug.util.env;
 var log = plug.util.log;
@@ -157,24 +161,28 @@ gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function() {
 
     var minified = paths.build + '**/*.min.*';
     var index = paths.client + 'index.html';
-    var minFilter = plug.filter(['**/*.min.*', '!**/*.map']);
-    var indexFilter = plug.filter(['index.html']);
+    var minFilter = filter(['**/*.min.*', '!**/*.map'], {
+        restore: true
+    });
+    var indexFilter = filter(['index.html'], {
+        restore: true
+    });
     var stream = gulp
         // Write the revisioned files
         .src([].concat(minified, index)) // add all built min files and index.html
         .pipe(minFilter) // filter the stream to minified css and js
         .pipe(plug.rev()) // create files with rev's
         .pipe(gulp.dest(paths.build)) // write the rev files
-        .pipe(minFilter.restore()) // remove filter, back to original stream
+        .pipe(minFilter.restore) // remove filter, back to original stream
 
     // inject the files into index.html
     .pipe(indexFilter) // filter to index.html
-        .pipe(inject('content/vendor.min.css', 'inject-vendor'))
-        .pipe(inject('content/all.min.css'))
-        .pipe(inject('vendor.min.js', 'inject-vendor'))
-        .pipe(inject('all.min.js'))
+        .pipe(ginject('content/vendor.min.css', 'inject-vendor'))
+        .pipe(ginject('content/all.min.css'))
+        .pipe(ginject('vendor.min.js', 'inject-vendor'))
+        .pipe(ginject('all.min.js'))
         .pipe(gulp.dest(paths.build)) // write the rev files
-        .pipe(indexFilter.restore()) // remove filter, back to original stream
+        .pipe(indexFilter.restore) // remove filter, back to original stream
 
     // replace the files referenced in index.html with the rev'd files
     .pipe(plug.revReplace()) // Substitute in new filenames
@@ -182,16 +190,19 @@ gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function() {
         .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
         .pipe(gulp.dest(paths.build)); // write the manifest
 
-    function inject(path, name) {
+
+    function ginject(path, name) {
         var pathGlob = paths.build + path;
-        var options = {
-            ignorePath: paths.build.substring(1),
-            read: false
-        };
+        var options = {};
         if (name) {
             options.name = name;
         }
-        return plug.inject(gulp.src(pathGlob), options);
+        return inject(gulp.src(pathGlob, {
+            read: false
+        }), {
+            name: options.name,
+            ignorePath: paths.build.substring(1)
+        });
     }
 });
 
